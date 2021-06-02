@@ -1,5 +1,5 @@
+version: '3.6'
 services:
-
   mysql_db:
     image: mysql:5.7
     environment:   # Set up mysql database name and password
