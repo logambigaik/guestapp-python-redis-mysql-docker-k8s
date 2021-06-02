@@ -6,13 +6,20 @@ import mysql.connector
 app = Flask(__name__)
 redis = Redis(host='localhost', port=6379)
 
+# MySQL configurations
+app.config["MYSQL_DATABASE_USER"] = "root"
+app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("db_root_password")
+app.config["MYSQL_DATABASE_DB"] = os.getenv("db_name")
+app.config["MYSQL_DATABASE_HOST"] = os.getenv("db_host")
+app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("db_port"))
+mysql.init_app(app)
 
-config = {
-    'user': 'u3bdz6p74fvh3u60',
-    'password': 'QLpKUeT6QQIlSEy8eQE0',
-    'host': 'byph1aciilvasjkgi2ow-mysql.services.clever-cloud.com',
-    'database': 'byph1aciilvasjkgi2ow'
-}
+#config = {
+#    'user': 0s.get,
+#    'password': 'QLpKUeT6QQIlSEy8eQE0',
+#    'host': 'byph1aciilvasjkgi2ow-mysql.services.clever-cloud.com',
+#    'database': 'byph1aciilvasjkgi2ow'
+#}
 
 
 @app.route('/')
