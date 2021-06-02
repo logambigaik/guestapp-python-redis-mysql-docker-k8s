@@ -8,10 +8,10 @@ redis = Redis(host='localhost', port=6379)
 
 # MySQL configurations
 app.config["MYSQL_DATABASE_USER"] = "root"
-app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("db_root_password")
-app.config["MYSQL_DATABASE_DB"] = os.getenv("db_name")
-app.config["MYSQL_DATABASE_HOST"] = os.getenv("db_host")
-app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("db_port"))
+app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("MYSQL_ROOT_PASSWORD")
+app.config["MYSQL_DATABASE_DB"] = os.getenv("MYSQL_DATABASE")
+app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_HOST")
+#app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("db_port"))
 mysql.init_app(app)
 
 #config = {
