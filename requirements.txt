@@ -1,0 +1,6 @@
+Flask==2.0.1
+Jinja2==3.0.1
+mysql-connector==2.2.9
+packaging==20.9
+redis==3.5.3
+
