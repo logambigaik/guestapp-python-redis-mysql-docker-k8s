@@ -1,0 +1,32 @@
+services:
+
+  mysql_db:
+    image: mysql:5.7
+    environment:   # Set up mysql database name and password
+      MYSQL_ROOT_PASSWORD: 'QLpKUeT6QQIlSEy8eQE0'
+      MYSQL_DATABASE: 'byph1aciilvasjkgi2ow'
+      MYSQL_USER: 'u3bdz6p74fvh3u60'
+      MYSQL_PASSWORD: 'QLpKUeT6QQIlSEy8eQE0'
+      MYSQL_HOST: 'byph1aciilvasjkgi2ow-mysql.services.clever-cloud.com'
+    networks:
+      - app-tier
+
+  python_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql_db
+    networks:
+      - app-tier
+    command:
+      tail -f /dev/null
+
+  redis:
+    image: redis:alpine
+
+networks:
+  app-tier:
+    driver: bridge
+    
+  
