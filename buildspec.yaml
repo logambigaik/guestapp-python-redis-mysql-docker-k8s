@@ -10,21 +10,7 @@ env:
      MYSQL_ROOT_PASSWORD: "admin123"	
      db_port: "3306"	
      MYSQL_DATABASE: "mysql"
-  #parameter-store:
-     # key: "value"
-     # key: "value"
-  #secrets-manager:
-     # key: secret-id:json-key:version-stage:version-id
-     # key: secret-id:json-key:version-stage:version-id
-  #exported-variables:
-     # - variable
-     # - variable
-  #git-credential-helper: yes
-#batch:
-  #fast-fail: true
-  #build-list:
-  #build-matrix:
-  #build-graph:
+  
 phases:
   install:
     #If you use the Ubuntu standard image 2.0 or later, you must specify runtime-versions.
@@ -33,41 +19,17 @@ phases:
       # name: version
       # name: version
       python: 3.8
-    #commands:
-      # - command
-      # - command
-    pre_build:
-     commands:
-      # - command
-       - command
-         - pip3 install -y requirements.txt  
+
   build:
     commands:
       # - command
       #  - command
       #    - export FLASK_APP = app.py
-           - echo 'successfully installed'
-  #post_build:
-    #commands:
-      # - command
-      # - command
-#reports:
-  #report-name-or-arn:
-    #files:
-      # - location
-      # - location
-    #base-directory: location
-    #discard-paths: yes
-    #file-format: JunitXml | CucumberJson
+           - pip3 install -y requirements.txt  
+  
 artifacts:
    files:
-     - '**/*' 
-     # - location
-     # - location
-   name: BuildArtifact
-   base-directory: '/root'
-   discard-paths: no
+     - appspec.yaml
+     - scripts/*
+   discard-paths: yes
    
-#cache:
-  #paths:
-    # - paths
