@@ -63,10 +63,10 @@ artifacts:
    files:
      - '**/*' 
      # - location
-    # - location
-    name: BuildArtifact
-    discard-paths: no
-    base-directory: python-mysql-pipelin
+     # - location
+   name: BuildArtifact
+   discard-paths: no
+   base-directory: python-mysql-pipelin
 #cache:
   #paths:
     # - paths
