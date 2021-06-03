@@ -65,8 +65,9 @@ artifacts:
      # - location
      # - location
    name: BuildArtifact
+   base-directory: '/root'
    discard-paths: no
-   base-directory: root
+   
 #cache:
   #paths:
     # - paths
