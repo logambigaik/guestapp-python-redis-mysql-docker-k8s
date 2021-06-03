@@ -1,4 +1,0 @@
-#!/bin/bash
-yum install -y httpd mod_wsgi.x86_64
-yum install python3-pip
-pip3 install -r /home/ec2-user/pythonmysql/requirements.txt
