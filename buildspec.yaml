@@ -25,7 +25,7 @@ phases:
       # - command
       #  - command
       #    - export FLASK_APP = app.py
-           - pip3 install -y requirements.txt  
+           - pip3 install -r requirements.txt  
   
 artifacts:
    files:
