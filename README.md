@@ -8,3 +8,6 @@ The Guestbook consists of 3 pages:
 Names of visitors to the site are stored in MySQL, and number of page views are stored in redis.
 
 ```
+
+
+https://www.infoq.com/articles/aws-codepipeline-deploy-docker/
