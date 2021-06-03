@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /app.wsgi
-    destination: /var/www/sample-app
+    destination: /var/www/guestbook-app
   - source: /
-    destination: /home/ec2-user/sample-app
+    destination: /home/ec2-user/guestbook-app
   - source: /conf/sample_app.conf
     destination: /etc/httpd/conf.d
 hooks:
