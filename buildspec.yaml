@@ -44,9 +44,9 @@ phases:
   build:
     commands:
       # - command
-        - command
-          - export FLASK_APP = app.py
-          - flask run
+      #  - command
+      #    - export FLASK_APP = app.py
+           - echo 'successfully installed'
   #post_build:
     #commands:
       # - command
