@@ -64,7 +64,7 @@ phases:
     - '**/*' 
     # - location
     # - location
-  name: build-artifact-name
+  name: BuildArtifact
   discard-paths: no
   base-directory: base_dir
 #cache:
