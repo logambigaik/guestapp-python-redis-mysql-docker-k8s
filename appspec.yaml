@@ -2,10 +2,10 @@ version: 0.0
 os: linux
 files:
   - source: /app.wsgi
-    destination: /var/www/guestbook-app
+    destination: /var/www/pythonmysql
   - source: /
-    destination: /home/ec2-user/guestbook-app
-  - source: /conf/guestbook_app.conf
+    destination: /home/ec2-user/pythonmysql
+  - source: /conf/pythonmysql.conf
     destination: /etc/httpd/conf.d
 hooks:
   AfterInstall:
