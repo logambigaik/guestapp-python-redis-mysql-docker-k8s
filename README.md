@@ -11,3 +11,21 @@ Names of visitors to the site are stored in MySQL, and number of page views are 
 
 
 https://www.infoq.com/articles/aws-codepipeline-deploy-docker/
+
+
+```
+https://github.com/logambigaik/guestapp-python-redis-mysql-docker-k8s.git
+
+aws codepipeline get-pipeline --name guestapp-pipeline >pipeline.json
+
+in buildspec.yaml
+
+
+
+artifacts:
+  files:
+    - appspec.yml
+    - target/SampleMavenTomcatApp.war
+    - scripts/*
+    
+ ```
