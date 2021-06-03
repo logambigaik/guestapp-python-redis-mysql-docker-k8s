@@ -5,7 +5,7 @@ files:
     destination: /var/www/guestbook-app
   - source: /
     destination: /home/ec2-user/guestbook-app
-  - source: /conf/sample_app.conf
+  - source: /conf/guestbook_app.conf
     destination: /etc/httpd/conf.d
 hooks:
   AfterInstall:
