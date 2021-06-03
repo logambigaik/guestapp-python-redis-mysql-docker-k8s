@@ -59,14 +59,14 @@ phases:
     #base-directory: location
     #discard-paths: yes
     #file-format: JunitXml | CucumberJson
-#artifacts:
-#   files:
-#     - '**/*' 
-#    # - location
-#    # - location
-#   name: BuildArtifact
-#   discard-paths: no
-#   base-directory: guestbook-app
+artifacts:
+   files:
+     - '**/*' 
+     # - location
+    # - location
+    name: BuildArtifact
+    discard-paths: no
+    base-directory: python-mysql-pipelin
 #cache:
   #paths:
     # - paths
