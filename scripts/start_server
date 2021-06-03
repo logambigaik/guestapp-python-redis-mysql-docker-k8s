@@ -1,2 +1,4 @@
 #!/bin/bash
 service httpd start
+export FLASK_APP=app.py
+flask run
