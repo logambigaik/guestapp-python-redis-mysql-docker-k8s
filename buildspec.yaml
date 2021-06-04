@@ -29,7 +29,9 @@ phases:
   
 artifacts:
    files:
-     - scripts/*.sh
+     - app.py
+     - guestapp-python-redis-mysql-docker-k8s/templates
+     - guestapp-python-redis-mysql-docker-k8s/scripts/
      - appspec.yml
    discard-paths: yes
    
