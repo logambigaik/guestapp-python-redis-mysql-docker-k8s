@@ -126,6 +126,33 @@ Successfully tagged klogambigai/guestapp_mysqldb:latest
 ```
 
 
+# Docker Machine Installation:
+
+```
+ base=https://github.com/docker/machine/releases/download/v0.16.0   && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine   && sudo mv /tmp/docker-machine /usr/local/bin/docker-machine   && chmod +x /usr/local/bin/docker-machine
+
+ ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+ 
+ docker-machine version
+ 
+```
+
+# Dockerswarm:
+
+# Open the port 2377 in docker master
+
+```
+[root@ip-172-31-84-176 opt]# docker swarm init
+Swarm initialized: current node (sm6ivmg1iizh9i3tyf1dk82xi) is now a manager.
+
+To add a worker to this swarm, run the following command:
+
+    docker swarm join --token SWMTKN-1-335datyte9oqg656hp10o461if1krm132eri9j2z9qiyiu6say-a9yqdl8mmwro87xpcgjjocmzk 172.31.84.176:2377
+
+To add a manager to this swarm, run 'docker swarm join-token manager' and follow the instructions.
+
+```
+![image](https://user-images.githubusercontent.com/54719289/120864464-2ad6b080-c584-11eb-8748-2dff9ae7182f.png)
 
 
 
