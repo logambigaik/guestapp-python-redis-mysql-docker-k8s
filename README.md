@@ -160,6 +160,10 @@ To add a manager to this swarm, run 'docker swarm join-token manager' and follow
 
 ![image](https://user-images.githubusercontent.com/54719289/120867457-de8e6f00-c589-11eb-94b3-b12a9861d18b.png)
 
+```
+docker stack --compose-file=docker-stack.yaml guestapp
 
+docker service ps guestap
 
-
+docker service scale guestapp_web=3
+```
