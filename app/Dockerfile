@@ -12,7 +12,7 @@ WORKDIR /app
 
 COPY /templates      /app/templates
 COPY requirements.txt /app/requirements.txt
-RUN pip3 install -r requirements.txt --src /usr/local/src
+RUN pip3 install -r requirements.txt 
 
 COPY . .
 
