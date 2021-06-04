@@ -40,7 +40,54 @@ sudo amazon-linux-extras install -y docker && sudo service docker start && sudo 
  docker-compose --version
 ```
 
-
+```
 docker-compose up
+[root@ip-172-31-84-176 guestapp-python-redis-mysql-docker-k8s]# docker-compose ps
+root@5e030756576f:/# mysql -u root -p
+Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.7.34 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| guestapp           |
+| mysql              |
+| performance_schema |
+| sys                |
++--------------------+
+5 rows in set (0.01 sec)
+
+mysql> use guestapp;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+
+mysql> select * from guestbook;
++--------------+---------------+
+| visitor_name | visitor_count |
++--------------+---------------+
+| Loga         |             2 |
++--------------+---------------+
+1 row in set (0.00 sec)
+
+```
+![image](https://user-images.githubusercontent.com/54719289/120852752-88fa9800-c572-11eb-9ee4-a3a1107cddd9.png)
+
+![image](https://user-images.githubusercontent.com/54719289/120852919-ce1eca00-c572-11eb-9021-201aa75b498c.png)
+![image](https://user-images.githubusercontent.com/54719289/120852949-dc6ce600-c572-11eb-86e9-12b51060779f.png)
+
+
 
 
