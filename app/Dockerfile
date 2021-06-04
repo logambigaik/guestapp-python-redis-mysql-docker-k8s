@@ -1,20 +1,6 @@
-FROM python:3.6-slim
-
-RUN apt-get clean \
-    && apt-get -y update
-
-RUN apt-get -y install \
-    nginx \
-    python3-dev \
-    build-essential
-
-WORKDIR /app
-
-COPY /templates      /app/templates
-COPY requirements.txt /app/requirements.txt
-RUN pip3 install -r requirements.txt 
-
-COPY . .
-
+FROM python:3.4-alpine
+ADD . /code
+WORKDIR /code
+RUN pip install -r requirements.txt
 EXPOSE 8000
-CMD [ "python", "app.py" ]
+CMD ["python", "app.py"]
