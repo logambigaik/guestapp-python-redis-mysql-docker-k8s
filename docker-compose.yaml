@@ -1,45 +1,31 @@
-version: "3.8"
+version: '3.8'
+
 services:
-  mysql_db:
-    image: mysql:5.7
-    container_name: mysqldb
-    restart: always
-    ports:
-    - 3306: 3306
-    environment:   # Set up mysql database name and password
-      MYSQL_ROOT_PASSWORD: 'admin123'
-      MYSQL_DATABASE: 'mysql'
-      MYSQL_USER: 'admin'
-      MYSQL_PASSWORD: 'admin'
-      MYSQL_HOST: 'db1.cdcey7nbdoev.us-east-1.rds.amazonaws.com'
-    volumes:
-      - mysql-data:/data/db
-      - mysql-configdb:/data/configdb
-    networks:
-      - app-tier
+ web:
+  build:
+   context: ./app
+  ports:
+  - 5000:5000
+  links:
+  - mysqldb
+  environment:
+  - FLASK_ENV: development
+  volumes:
+  - ./:/app
 
-  python_app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-      container_name: myweb
-    ports:
-    - 8000:8000
-    depends_on:
-      - mysql_db
-    networks:
-      - app-tier
-
-  redis:
-    image: redis:alpine
-    container_name: myredis
-    ports:
-    - 6379:6379
+ mysqldb:
+  build:
+   context: ./db
+  ports:
+  - 3306:3306
+  environment:
+  - MYSQL_ROOT_PASSWORD=admin123
+  volumes:
+  - mysql:/var/lib/mysql
+  - mysql_config:/etc/mysql
+ redis:
+  image: "redis:alpine" 
 
 volumes:
-  mysql-data:
-  mysql-configdb:
-
-networks:
-  app-tier:
-    driver: bridge
+  mysql:
+  mysql_config:
