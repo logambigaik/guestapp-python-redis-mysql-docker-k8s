@@ -4,28 +4,47 @@ services:
  web:
   build:
    context: ./app
+
   ports:
   - 8000:8000
+
   links:
   - mysqldb
-  environment:
-  - FLASK_ENV: development
+  - redis
+
   volumes:
   - ./:/app
+
+  networks:
+  - app-tier
 
  mysqldb:
   build:
    context: ./db
+
   ports:
   - 3306:3306
+
   environment:
   - MYSQL_ROOT_PASSWORD=admin123
+
   volumes:
   - mysql:/var/lib/mysql
   - mysql_config:/etc/mysql
+
+  networks:
+  - app-tier
+
  redis:
-  image: "redis:alpine" 
+  image: redis:alpine
+
+  networks:
+  - app-tier
 
 volumes:
   mysql:
   mysql_config:
+
+networks:
+ app-tier:
+   driver: bridge
