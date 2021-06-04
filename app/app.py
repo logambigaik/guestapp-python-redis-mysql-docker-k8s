@@ -3,19 +3,9 @@ from flask import Flask, render_template, request
 from redis import Redis
 import mysql.connector
 app = Flask(__name__)
-redis = Redis(host='localhost', port=6379)
+cache = Redis(host='redis',port=6379)
 
 app = Flask(__name__)
-
-#mysql = MySQL()
-
-# MySQL configurations
-#app.config["MYSQL_DATABASE_USER"] = "root"
-#app.config["MYSQL_DATABASE_PASSWORD"] = os.getenv("MYSQL_ROOT_PASSWORD")
-#app.config["MYSQL_DATABASE_DB"] = os.getenv("MYSQL_DATABASE")
-#app.config["MYSQL_DATABASE_HOST"] = os.getenv("MYSQL_SERVICE_HOST")
-#app.config["MYSQL_DATABASE_PORT"] = int(os.getenv("MYSQL_SERVICE_PORT"))
-#mysql.init_app(app)
 
 config = {
     'user': 'root',
@@ -25,6 +15,7 @@ config = {
 
 }
 
+visitor_count = cache.incr('hits')
 
 @app.route('/')
 def index():
@@ -41,7 +32,7 @@ def thanks():
     if request.method == "POST":
         details = request.form
         visitor_name = details['visitor']
-        visitor_count = redis.incr('hits')
+        #visitor_count = redis.incr('hits')
         #sql1 = "SELECT * FROM guestbook where visitor_name = %s "
         cursor.execute("SELECT * FROM guestbook where visitor_name = %s ", (visitor_name,))
         row_count = cursor.fetchone()
