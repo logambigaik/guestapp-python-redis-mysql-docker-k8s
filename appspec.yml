@@ -1,8 +1,12 @@
 version: 0.0
 os: linux
 files:
-  - source: /
+  - source: /guestapp-python-redis-mysql-docker-k8s
     destination: /home/ec2-user/pythonmysql
+  - source: /guestapp-python-redis-mysql-docker-k8s/scripts
+    destination: /home/ec2-user/pythonmysql/scripts
+    
+   
 permissions:
   - object: /
     pattern: "**"
