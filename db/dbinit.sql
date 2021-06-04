@@ -1,0 +1,3 @@
+DROP DATABASE IF EXISTS guestapp;
+CREATE DATABASE guestapp;
+GRANT ALL PRIVILEGES ON guestapp.* TO 'guest'@'%' IDENTIFIED BY 'guest';
