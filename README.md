@@ -89,5 +89,43 @@ mysql> select * from guestbook;
 ![image](https://user-images.githubusercontent.com/54719289/120852949-dc6ce600-c572-11eb-86e9-12b51060779f.png)
 
 
+# For docker-stack push the image into docker repo/ecr:
+
+```
+[root@ip-172-31-84-176 guestapp-python-redis-mysql-docker-k8s]# docker build -t klogambigai/guestapp_pythonweb:latest -f ./app/Dockerfile ./app
+Sending build context to Docker daemon  9.728kB
+Step 1/6 : FROM python:3.4-alpine
+ ---> c06adcf62f6e
+Step 2/6 : ADD . /code
+ ---> Using cache
+ ---> 4696839a0c51
+Step 3/6 : WORKDIR /code
+ ---> Using cache
+ ---> 6bba3a19f7b3
+Step 4/6 : RUN pip install -r requirements.txt
+ ---> Using cache
+ ---> d713cd794b6a
+Step 5/6 : EXPOSE 8000
+ ---> Using cache
+ ---> efe8b00e2a20
+Step 6/6 : CMD ["python", "app.py"]
+ ---> Using cache
+ ---> 5984b46512e0
+Successfully built 5984b46512e0
+Successfully tagged klogambigai/guestapp_pythonweb:latest
+[root@ip-172-31-84-176 guestapp-python-redis-mysql-docker-k8s]# docker build -t klogambigai/guestapp_mysqldb:latest -f ./db/Dockerfile ./db
+Sending build context to Docker daemon  3.072kB
+Step 1/2 : FROM mysql:5.7
+ ---> 2c9028880e58
+Step 2/2 : ADD dbinit.sql /docker-entrypoint-initdb.d
+ ---> Using cache
+ ---> 55db777f5a5f
+Successfully built 55db777f5a5f
+Successfully tagged klogambigai/guestapp_mysqldb:latest
+
+```
+
+
+
 
 
