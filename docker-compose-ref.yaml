@@ -1,5 +1,8 @@
 web:
-  build: .
+  build:
+      context: ./app
+      dockerfile: Dockerfile
+  container_name: webapp
   ports:
     - "8000:8000"
   links:
@@ -9,7 +12,10 @@ web:
   #command: /code/manage.py runserver 0.0.0.0:8000
 
 mysql:
-  build: .
+  build: 
+      context: ./db
+      dockerfile: Dockerfile
+  container_name: mysqldb
   ports
   environment:
     - MYSQL_DATABASE=mysql
@@ -20,6 +26,7 @@ mysql:
     - data-volume:/var/lib/mysql
 redis:
   image: redis:latest
+  container_name: redis
   ports:
     - "6379:6379"
 
