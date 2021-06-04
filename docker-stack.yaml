@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+ web:
+  image: klogambigai/guestapp_pythonweb:latest
+  deploy:
+    replicas: 1
+    restart_policy:
+      condition: on-failure
+    placement:
+      constraints: [node.role == worker]
+  expose:
+    - 8000
+  environment:
+    - FLASK_ENV=production
+    - APP_SETTINGS=project.config.ProductionConfig
+    #- DB_USER=root
+    #- DB_PASSWORD=admin123
+  depends_on:
+    - mysqldb
+    - redis
+  networks:
+    - app
+
+  healthcheck:
+    test: ["CMD-SHELL", "curl -s -X GET http://localhost:9000/health | grep 'UP'"]
+    interval: 10s
+    timeout: 2s
+    retries: 5
+    start_period: 10s
+
+
+ mysqldb:
+  image: klogambigai/guestapp_mysqldb:latest
+  deploy:
+    replicas: 1
+    restart_policy:
+      condition: on-failure
+    placement:
+      constraints: [node.role == manager]
+  expose:
+    - 3306
+  volumes:
+    - data-volume:/var/lib/mysql/data
+  environment:
+    - MYSQL_ROOT_PASSWORD=admin123
+  networks:
+    - app
+
+ redis:
+  image: redis:alpine
+  deploy:
+    replicas: 1
+    restart_policy:
+      condition: on-failure
+    placement:
+      constraints: [node.role == worker]
+  expose:
+    - 6379
+  networks:
+    - app
+
+ visualizer:
+  image: dockersamples/visualizer:latest
+  ports:
+    - 8080:8080
+  volumes:
+    - "/var/run/docker.sock:/var/run/docker.sock"
+
+  deploy:
+    placement:
+      constraints: [node.role == manager]
+  networks:
+    - app
+
+volumes:
+  data-volume:
+    driver: local
+
+networks:
+  app:
+   driver: overlay
