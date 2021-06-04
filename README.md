@@ -40,3 +40,7 @@ sudo amazon-linux-extras install -y docker && sudo service docker start && sudo 
  docker-compose --version
 ```
 
+
+docker-compose up
+
+
