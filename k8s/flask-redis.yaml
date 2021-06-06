@@ -1,0 +1,47 @@
+piVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapi-deployment
+  labels:
+    app: flaskapi-1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: flaskapi-1
+  template:
+    metadata:
+      labels:
+        app: flaskapi-1
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+              name: redis
+              protocol: TCP
+        - name: flaskapi-container
+          image: klogambigai/guestapp_pythonweb:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8000
+          env:
+            - name: "REDIS_HOST"
+              value: "localhost"
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: flask-service
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8000
+    nodePort: 30993
+  selector:
+    app: flaskapi-1
+  type: NodePort
