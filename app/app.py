@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from redis import Redis
 import mysql.connector
 app = Flask(__name__)
-cache = Redis(host='redis',port=6379)
+cache = Redis(host=os.environ.get('REDIS_HOST', 'redis'),port=6379)
 
 app = Flask(__name__)
 
