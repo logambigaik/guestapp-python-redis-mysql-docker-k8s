@@ -8,6 +8,10 @@ The Guestbook consists of 3 pages:
 Names of visitors to the site are stored in MySQL, and number of page views are stored in redis.
 
 ```
+
+
+https://testdriven.io/blog/running-flask-on-docker-swarm/#automation-script
+
 https://github.com/logambigaik/ecs_nodejs
 https://github.com/logambigaik/codedeploy-springboot.git
 
