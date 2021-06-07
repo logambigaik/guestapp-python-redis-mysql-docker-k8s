@@ -14,6 +14,7 @@ config = {
     'host':  'mysqldb',
     'database':  'guestapp'
 }
+
 """
 
 visitor_count = cache.incr('hits')
