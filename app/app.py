@@ -7,13 +7,14 @@ cache = Redis(host=os.environ.get('REDIS_HOST', 'redis'),port=6379)
 
 app = Flask(__name__)
 
+"""
 config = {
     'user': 'root',
     'password': 'admin123',
     'host':  'mysqldb',
     'database':  'guestapp'
-
 }
+"""
 
 visitor_count = cache.incr('hits')
 
@@ -24,7 +25,7 @@ def index():
 @app.route('/thanks', methods=['GET','POST'])
 def thanks():
 
-    conn = mysql.connector.connect(**config)
+    conn = mysql.connector.connect(option_files='mysql.conf')
     cursor = conn.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS guestbook(visitor_name VARCHAR(20),visitor_count integer)")
     conn.commit()
