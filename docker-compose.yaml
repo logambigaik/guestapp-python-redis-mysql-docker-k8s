@@ -4,7 +4,12 @@ services:
  web:
   build:
    context: ./app
-
+   
+  environment:
+  - MYSQL_HOST=mysqldb
+  - MYSQL_DB_NAME=guestapp
+  - MYSQL_ROOT_PASSWORD=admin123 
+  
   ports:
   - 8000:8000
 
