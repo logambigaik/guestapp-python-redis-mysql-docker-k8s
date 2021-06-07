@@ -14,8 +14,9 @@ services:
   environment:
     - FLASK_ENV=production
     - APP_SETTINGS=project.config.ProductionConfig
-    #- DB_USER=root
-    #- DB_PASSWORD=admin123
+    - MYSQL_HOST=mysqldb
+    - MYSQL_DB_NAME=guestapp
+    - MYSQL_ROOT_PASSWORD=admin123
   depends_on:
     - mysqldb
     - redis
