@@ -1,0 +1,45 @@
+#04-mysql-deployment.yml
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: mysql-deploy
+spec:
+  replicas: 2
+  serviceName: mysql-backend
+  selector:
+    matchLabels:
+      app: mysql
+
+  template:
+    metadata:
+      labels:
+        app: mysql
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:5.6
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-db
+                  key: password
+          ports:
+            - containerPort: 3306
+              name: mysql
+          volumeMounts:
+            - name: mysql-persistent-storage
+              mountPath: /var/lib/mysql
+
+            - name: mysql-initdb
+              mountPath: /docker-entrypoint-initdb.d
+
+      volumes:
+        - name: mysql-persistent-storage
+          persistentVolumeClaim:
+            claimName: mysql-pv-claim
+
+        - name: mysql-initdb
+          configMap:
+            name: guestapp-dbcreation-script
+
