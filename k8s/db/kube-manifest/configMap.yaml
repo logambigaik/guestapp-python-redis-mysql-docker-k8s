@@ -1,0 +1,9 @@
+#03-UserManagement-ConfigMap.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: guestapp-dbcreation-script
+data:
+  mysql-guestapp.sql: |-
+    DROP DATABASE IF EXISTS guestapp;
+    CREATE DATABASE guestapp;
