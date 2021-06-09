@@ -3,7 +3,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: mysql-pv-claim
   labels:
-    app: wordpress
+    app: mysql
 spec:
   accessModes:
     - ReadWriteOnce
@@ -16,7 +16,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: py-pv-claim
   labels:
-    app: wordpress
+    app: flaskapi-1
 spec:
   accessModes:
     - ReadWriteOnce
