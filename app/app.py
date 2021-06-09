@@ -57,7 +57,7 @@ def thanks():
 @app.route('/listofvisitor', methods=['GET'])
 def listofvisitor():
     if request.method == "GET":
-        conn = mysql.connector.connect("host=%s,user=%s,passwd=%s,database=%s",(host,user,passwd,database))
+        conn = mysql.connector.connect(host=host,user=user,passwd=password,database=database)
         cursor=conn.cursor()
         cursor.execute("select * from guestbook")
         result = cursor.fetchall()
