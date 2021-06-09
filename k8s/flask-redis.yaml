@@ -1,5 +1,5 @@
 piVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: flaskapi-deployment
   labels:
@@ -9,11 +9,17 @@ spec:
   selector:
     matchLabels:
       app: flaskapi-1
+  serviceName: flask-statefulset-frontend
   template:
     metadata:
       labels:
         app: flaskapi-1
     spec:
+      initContainers:
+        - name: init-db
+          image: busybox:1.31
+          command: ['sh', '-c', 'echo -e "MYSQL Server has started";']
+
       containers:
         - name: redis
           image: redis
@@ -22,26 +28,27 @@ spec:
               name: redis
               protocol: TCP
         - name: flaskapi-container
-          image: klogambigai/guestapp_pythonweb:latest
+          image: klogambigai/pythonweb:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 8000
           env:
             - name: "REDIS_HOST"
               value: "localhost"
+            - name: DB_HOSTNAME
+              value: "mysql"
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: "guestapp"
+            - name: DB_USERNAME
+              value: "root"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-db
+                  key: password
+          #volumeMounts:
+          #  - name: py-persistent-storage
+          #    mountPath: /var/lib/mysql
 
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: flask-service
-spec:
-  ports:
-  - port: 80
-    protocol: TCP
-    targetPort: 8000
-    nodePort: 30993
-  selector:
-    app: flaskapi-1
-  type: NodePort
