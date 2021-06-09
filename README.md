@@ -19,6 +19,8 @@ https://github.com/logambigaik/codedeploy-springboot.git
 https://www.infoq.com/articles/aws-codepipeline-deploy-docker/
 
 
+https://www.stacksimplify.com/aws-eks/microservices-on-aws-eks/learn-to-deploy-microservices-on-aws-eks/  --k8s
+
 ```
 https://github.com/logambigaik/guestapp-python-redis-mysql-docker-k8s.git
 
