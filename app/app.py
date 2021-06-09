@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 host=os.getenv("DB_HOSTNAME")
 user=os.getenv("DB_USERNAME")
-passwd=os.getenv("DB_PASSWORD")
+password=os.getenv("DB_PASSWORD")
 database=os.getenv("DB_NAME")
 
 print(host,user,passwd,database)
