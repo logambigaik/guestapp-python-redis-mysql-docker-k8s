@@ -9,6 +9,9 @@ Names of visitors to the site are stored in MySQL, and number of page views are 
 
 ```
 
+
+k8s-mysql-master-slave : https://kublr.com/blog/setting-up-mysql-replication-clusters-in-kubernetes-2/
+
 https://github.com/janakiramm/Kubernetes-multi-container-pod.git
 
 https://testdriven.io/blog/running-flask-on-docker-swarm/#automation-script
