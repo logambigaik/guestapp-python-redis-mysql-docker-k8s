@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp
+spec:
+  selector:
+    app: flaskapi-1
+  ports:
+    - port: 80
+      targetPort: 8000
+  type: LoadBalancer
