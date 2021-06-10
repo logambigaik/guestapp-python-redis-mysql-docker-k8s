@@ -18,6 +18,8 @@ https://github.com/logambigaik/codedeploy-springboot.git
 
 https://www.infoq.com/articles/aws-codepipeline-deploy-docker/
 
+https://kublr.com/blog/setting-up-mysql-replication-clusters-in-kubernetes-2/
+
 
 https://www.stacksimplify.com/aws-eks/microservices-on-aws-eks/learn-to-deploy-microservices-on-aws-eks/  --k8s
 
