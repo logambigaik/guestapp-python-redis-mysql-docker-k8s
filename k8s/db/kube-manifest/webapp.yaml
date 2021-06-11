@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: flaskapi-deployment
+  name: flaskapi
   labels:
     app: flaskapi-1
 spec:
@@ -18,15 +18,9 @@ spec:
       initContainers:
         - name: init-db
           image: busybox:1.31
-          command: ['sh', '-c', 'echo -e "MYSQL Server has started";']
+          command: ['sh', '-c', "until nslookup mysql.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mysql; sleep 2; done"]
 
       containers:
-        - name: redis
-          image: redis
-          ports:
-            - containerPort: 6379
-              name: redis
-              protocol: TCP
         - name: flaskapi-container
           image: klogambigai/pythonweb:latest
           imagePullPolicy: Always
@@ -34,7 +28,7 @@ spec:
             - containerPort: 8000
           env:
             - name: "REDIS_HOST"
-              value: "localhost"
+              value: "redis-master"
             - name: DB_HOSTNAME
               value: "mysql"
             - name: DB_PORT
@@ -48,4 +42,3 @@ spec:
                 secretKeyRef:
                   name: mysql-db
                   key: password
-
