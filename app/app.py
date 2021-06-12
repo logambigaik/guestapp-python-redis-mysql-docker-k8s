@@ -22,7 +22,7 @@ database=os.getenv("DB_NAME")
 
 print(host,user,passwd,database)
 
-visitor_count = cache.incr('hits')
+#visitor_count = cache.incr('hits')
 
 @app.route('/')
 def index():
@@ -39,7 +39,7 @@ def thanks():
     if request.method == "POST":
         details = request.form
         visitor_name = details['visitor']
-        #visitor_count = redis.incr('hits')
+        visitor_count = redis.incr('hits')
         #sql1 = "SELECT * FROM guestbook where visitor_name = %s "
         cursor.execute("SELECT * FROM guestbook where visitor_name = %s ", (visitor_name,))
         row_count = cursor.fetchone()
