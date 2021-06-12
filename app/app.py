@@ -31,7 +31,7 @@ def index():
 @app.route('/thanks', methods=['GET','POST'])
 def thanks():
 
-    conn = mysql.connector.connect(host=host,user=user,passwd=password,database=database)
+    conn = mysql.connector.connect(host=host,user=user,password=password,database=database)
     cursor = conn.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS guestbook(visitor_name VARCHAR(20),visitor_count integer)")
     conn.commit()
@@ -57,7 +57,7 @@ def thanks():
 @app.route('/listofvisitor', methods=['GET'])
 def listofvisitor():
     if request.method == "GET":
-        conn = mysql.connector.connect(host=host,user=user,passwd=password,database=database)
+        conn = mysql.connector.connect(host=host,user=user,password=password,database=database)
         cursor=conn.cursor()
         cursor.execute("select * from guestbook")
         result = cursor.fetchall()
