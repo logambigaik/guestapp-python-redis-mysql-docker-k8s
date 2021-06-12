@@ -20,7 +20,7 @@ user=os.getenv("DB_USERNAME")
 password=os.getenv("DB_PASSWORD")
 database=os.getenv("DB_NAME")
 
-print(host,user,passwd,database)
+print(host,user,password,database)
 
 #visitor_count = cache.incr('hits')
 
