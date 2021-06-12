@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from redis import Redis
 import mysql.connector
 app = Flask(__name__)
-cache = Redis(host=os.environ.get('REDIS_HOST', 'redis'),port=6379)
+cache = Redis(host=os.environ.get('REDIS_HOST'),port=6379)
 
 app = Flask(__name__)
 
@@ -39,7 +39,7 @@ def thanks():
     if request.method == "POST":
         details = request.form
         visitor_name = details['visitor']
-        visitor_count = redis.incr('hits')
+        visitor_count = cache.incr('hits')
         #sql1 = "SELECT * FROM guestbook where visitor_name = %s "
         cursor.execute("SELECT * FROM guestbook where visitor_name = %s ", (visitor_name,))
         row_count = cursor.fetchone()
