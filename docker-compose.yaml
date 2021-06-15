@@ -9,6 +9,7 @@ services:
   - MYSQL_HOST=mysqldb
   - MYSQL_DB_NAME=guestapp
   - MYSQL_ROOT_PASSWORD=admin123 
+  -REDIS_HOST=host
   
   ports:
   - 8000:8000
