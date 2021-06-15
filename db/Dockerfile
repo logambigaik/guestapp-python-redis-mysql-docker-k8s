@@ -1,4 +1,4 @@
-FROM mysql:5.7
+FROM mysql:latest
 # run create.sql on init
 #ADD db/dbinit.sql /docker-entrypoint-initdb.d
 #For docker compose
